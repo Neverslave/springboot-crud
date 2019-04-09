@@ -1,49 +1,95 @@
 package com.yuedanet.pojo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import java.util.Date;
+import javax.persistence.*;
 
 public class User {
-    private String name;
-    @JsonIgnore //不返回
-    private  Integer age;
-  @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss a",locale = "zh",timezone = "GMT+8") //格式转换
-    private Date birthday;
-  @JsonInclude(JsonInclude.Include.NON_NULL) //为null 不返回
-    private String desc;
+    @Id
+    private Integer id;
 
-    public String getName() {
-        return name;
+    private String username;
+
+    private String password;
+
+    @Column(name = "create_time")
+    private Date createTime;
+
+    /**
+     * 0正常，1冻结，2删除
+     */
+    private String status;
+
+    /**
+     * @return id
+     */
+    public Integer getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    /**
+     * @param id
+     */
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getAge() {
-        return age;
+    /**
+     * @return username
+     */
+    public String getUsername() {
+        return username;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    /**
+     * @param username
+     */
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public Date getBirthday() {
-        return birthday;
+    /**
+     * @return password
+     */
+    public String getPassword() {
+        return password;
     }
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    /**
+     * @param password
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getDesc() {
-        return desc;
+    /**
+     * @return create_time
+     */
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    /**
+     * @param createTime
+     */
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    /**
+     * 获取0正常，1冻结，2删除
+     *
+     * @return status - 0正常，1冻结，2删除
+     */
+    public String getStatus() {
+        return status;
+    }
+
+    /**
+     * 设置0正常，1冻结，2删除
+     *
+     * @param status 0正常，1冻结，2删除
+     */
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
