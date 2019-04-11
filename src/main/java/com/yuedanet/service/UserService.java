@@ -8,7 +8,7 @@ public interface UserService {
     void saveUser(User user)throws Exception;
     void updateUser(User user);
     void deleteUser(Integer userid);
-    User queryUserById(String userid);
+    User queryUserById(Integer userid);
     List<User> querUserList(User user);
     List<User> queryUserListPaged(User user,Integer page,Integer pageSize);
 

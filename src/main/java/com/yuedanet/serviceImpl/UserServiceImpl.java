@@ -7,7 +7,8 @@ import com.yuedanet.pojo.User;
 import com.yuedanet.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.thymeleaf.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
@@ -19,6 +20,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapperCustom userMapperCustom;
     @Override
+    @Transactional(propagation = Propagation.REQUIRED) //事务
     public void saveUser(User user) throws Exception {
         userMapper.insert(user);
     }
@@ -35,7 +37,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User queryUserById(String userid) {
+    public User queryUserById(Integer userid) {
         return userMapper.selectByPrimaryKey(userid);
     }
 
